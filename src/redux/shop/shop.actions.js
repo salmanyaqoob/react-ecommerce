@@ -1,4 +1,6 @@
-const shopActionType = {
-  GET_COLLECTION_BY_ID: "GET_COLLECTION_BY_ID"
-};
-export default shopActionType;
+import ShopActionType from "./shop.types";
+
+export const updateCollections = collectionsMap => ({
+  type: ShopActionType.UPDATE_COLLECTIONS,
+  payload: collectionsMap
+});
