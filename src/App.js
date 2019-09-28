@@ -12,22 +12,8 @@ import CheckoutPage from "./pages/checkout/checkout.component";
 
 import Header from "./components/header/header.component";
 
-import {
-  auth,
-  createUserProfileDocument,
-  createDocumentsAndCollections
-} from "./firebase/firebase.util";
-
-import { setCurrentUser } from "./redux/user/user.action";
 import { selectCurrentUser } from "./redux/user/user.selector";
-
-import { selectShopCollectionForPreview } from "./redux/shop/shop.selector";
-
-const HatsPage = () => (
-  <div>
-    <h1>Hats Page</h1>
-  </div>
-);
+import { checkUserSession } from "./redux/user/user.action";
 
 class App extends React.Component {
   constructor() {
@@ -40,29 +26,28 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser, collectionsArray } = this.props;
+    const { checkUserSession } = this.props;
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
+    checkUserSession();
 
-        userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data()
-          });
-        });
-      } else {
-        setCurrentUser(userAuth);
-      }
-
-      // createDocumentsAndCollections(
-      //   "collections",
-      //   collectionsArray.map(({ title, items }) => ({ title, items }))
-      // );
-
-      // console.log(user);
-    });
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
+    //     userRef.onSnapshot(snapShot => {
+    //       setCurrentUser({
+    //         id: snapShot.id,
+    //         ...snapShot.data()
+    //       });
+    //     });
+    //   } else {
+    //     setCurrentUser(userAuth);
+    //   }
+    // createDocumentsAndCollections(
+    //   "collections",
+    //   collectionsArray.map(({ title, items }) => ({ title, items }))
+    // );
+    // console.log(user);
+    // });
   }
 
   componentWillUnmount() {
@@ -87,7 +72,6 @@ class App extends React.Component {
               )
             }
           ></Route>
-          <Route exact path="/shop/hats" component={HatsPage}></Route>
           <Route exact path="/checkout" component={CheckoutPage}></Route>
         </Switch>
       </div>
@@ -95,13 +79,12 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  collectionsArray: selectShopCollectionForPreview
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
 });
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 export default connect(
