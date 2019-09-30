@@ -4,7 +4,7 @@ import { createStructuredSelector } from "reselect";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
-import StripCheckoutButton from "../../components/strip-button/strip-button.component";
+import StripeCheckoutButton from "../../components/strip-button/strip-button.component";
 
 import {
   selectCartItems,
@@ -47,7 +47,7 @@ const CheckoutPage = ({ cartItems, total }) => (
       <br />
       4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
     </WarningContainer>
-    <StripCheckoutButton price={total} />
+    <StripeCheckoutButton price={total} />
   </CheckoutPageContainer>
 );
 
