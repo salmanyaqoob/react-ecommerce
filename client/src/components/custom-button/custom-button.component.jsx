@@ -3,7 +3,7 @@ import React from "react";
 
 import { CustomButtonContainer } from "./custom-button.style";
 
-const CustomButton = ({ value, ...otherButtonProps }) => (
+const CustomButton = ({ value, type = "", ...otherButtonProps }) => (
   <CustomButtonContainer {...otherButtonProps}>{value}</CustomButtonContainer>
 );
 
