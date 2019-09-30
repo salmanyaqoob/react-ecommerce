@@ -8,9 +8,10 @@ import CollectionPreview from "../../components/collection-preview/collection-pr
 
 const CollectionsOverview = ({ collections }) => (
   <div className="collection-overview">
-    {collections.map(({ id, ...otherCollectionProps }) => (
-      <CollectionPreview key={id} {...otherCollectionProps} />
-    ))}
+    {collections.map(collection => {
+      const { id, ...otherCollectionProps } = collection;
+      return <CollectionPreview key={id} {...otherCollectionProps} />;
+    })}
   </div>
 );
 
