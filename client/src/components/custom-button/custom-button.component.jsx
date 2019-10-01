@@ -3,8 +3,11 @@ import React from "react";
 
 import { CustomButtonContainer } from "./custom-button.style";
 
-const CustomButton = ({ value, ...otherButton }) => (
-  <CustomButtonContainer {...otherButton}>{value}</CustomButtonContainer>
-);
+const CustomButton = props => {
+  const { value, ...otherButton } = props;
+  return (
+    <CustomButtonContainer {...otherButton}>{value}</CustomButtonContainer>
+  );
+};
 
 export default CustomButton;
