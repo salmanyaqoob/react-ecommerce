@@ -37,7 +37,7 @@ const StripeCheckoutButton = ({ price, cartClear, dispatch }) => {
   return (
     <StripeCheckout
       lable="Pay Now"
-      name="CRWN Cloths Lttd." // the pop-in header title
+      name="Crown Clothings" // the pop-in header title
       description={`Your total is $${price}`}
       image="https://sendeyo.com/up/d/f3eb2117da" // the pop-in header image (default none)
       ComponentClass="div"

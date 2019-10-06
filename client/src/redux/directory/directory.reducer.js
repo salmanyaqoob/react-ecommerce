@@ -27,7 +27,7 @@ const INITIAL_STATE = {
     },
     {
       title: "mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+      imageUrl: "https://www.crown-clothings.com/men.jpg",
       size: "large",
       id: 5,
       linkUrl: "shop/mens"
