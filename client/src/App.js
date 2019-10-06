@@ -19,6 +19,9 @@ const SigninSignupPage = lazy(() =>
   import("./pages/signin-signup/signin-signup.component")
 );
 const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"));
+const ContactusPage = lazy(() =>
+  import("./pages/contactus/contactus.component")
+);
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
@@ -46,6 +49,7 @@ const App = ({ checkUserSession, currentUser }) => {
               }
             ></Route>
             <Route exact path="/checkout" component={CheckoutPage}></Route>
+            <Route exact path="/contact" component={ContactusPage}></Route>
           </Suspense>
         </ErrorBoundary>
       </Switch>

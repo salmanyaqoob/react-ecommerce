@@ -47,4 +47,5 @@ export const WarningContainer = styled.div`
   margin-top: 40px;
   font-size: 24px;
   color: red;
+  display: none;
 `;
