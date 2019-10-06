@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import {
   Button,
   Form,
@@ -112,108 +113,114 @@ export default class ContactusPage extends React.Component {
   render() {
     const { errors } = this.state;
     return (
-      <Container>
-        <Row>
-          <Col sm="12" md={{ size: 6, offset: 3 }}>
-            <h3>Contact us</h3>
-            <p>Please fill the information below</p>
-            {this.state.formValid ? (
-              <UncontrolledAlert color="success" fade={false}>
-                Your request has been submitted Successfully!
-                <br />
-                We will contact you soon.
-              </UncontrolledAlert>
-            ) : (
-              ""
-            )}
-          </Col>
-        </Row>
-        <Row>
-          <Col sm="12" md={{ size: 6, offset: 3 }}>
-            <Form onSubmit={this.handleSubmit} noValidate method="post">
-              <FormGroup tag="fieldset">
-                <legend>Enquiry Type</legend>
-                <FormGroup check inline>
-                  <Label check>
-                    <Input type="radio" name="formType" required /> Complain
-                  </Label>
+      <div>
+        <Helmet>
+          <title>Contact us</title>
+          <meta name="description" content="Contact us with Crown Clothing" />
+        </Helmet>
+        <Container>
+          <Row>
+            <Col sm="12" md={{ size: 6, offset: 3 }}>
+              <h3>Contact us</h3>
+              <p>Please fill the information below</p>
+              {this.state.formValid ? (
+                <UncontrolledAlert color="success" fade={false}>
+                  Your request has been submitted Successfully!
+                  <br />
+                  We will contact you soon.
+                </UncontrolledAlert>
+              ) : (
+                ""
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col sm="12" md={{ size: 6, offset: 3 }}>
+              <Form onSubmit={this.handleSubmit} noValidate method="post">
+                <FormGroup tag="fieldset">
+                  <legend>Enquiry Type</legend>
+                  <FormGroup check inline>
+                    <Label check>
+                      <Input type="radio" name="formType" required /> Complain
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check inline>
+                    <Label check>
+                      <Input type="radio" name="formType" required /> Enquiry
+                    </Label>
+                  </FormGroup>
                 </FormGroup>
-                <FormGroup check inline>
-                  <Label check>
-                    <Input type="radio" name="formType" required /> Enquiry
-                  </Label>
+
+                <FormGroup>
+                  <Label for="fullName">Full Name</Label>
+                  <Input
+                    type="text"
+                    name="fullName"
+                    id="fullName"
+                    required
+                    placeholder="Your Full Name"
+                    onChange={this.handleChange}
+                    value={this.state.fullName}
+                  />
+                  {errors.fullName.length > 0 && (
+                    <Badge color="danger">{errors.fullName}</Badge>
+                  )}
                 </FormGroup>
-              </FormGroup>
 
-              <FormGroup>
-                <Label for="fullName">Full Name</Label>
-                <Input
-                  type="text"
-                  name="fullName"
-                  id="fullName"
-                  required
-                  placeholder="Your Full Name"
-                  onChange={this.handleChange}
-                  value={this.state.fullName}
-                />
-                {errors.fullName.length > 0 && (
-                  <Badge color="danger">{errors.fullName}</Badge>
-                )}
-              </FormGroup>
+                <FormGroup>
+                  <Label for="email">Email</Label>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    placeholder="Your Email Address"
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                  />
+                  {errors.email.length > 0 && (
+                    <Badge color="danger">{errors.email}</Badge>
+                  )}
+                </FormGroup>
 
-              <FormGroup>
-                <Label for="email">Email</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required
-                  placeholder="Your Email Address"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                />
-                {errors.email.length > 0 && (
-                  <Badge color="danger">{errors.email}</Badge>
-                )}
-              </FormGroup>
+                <FormGroup>
+                  <Label for="mobileNumber">Mobile Number</Label>
+                  <Input
+                    type="tel"
+                    name="mobileNumber"
+                    id="mobileNumber"
+                    required
+                    placeholder="Your Mobile Number"
+                    onChange={this.handleChange}
+                    value={this.state.mobileNumber}
+                  />
+                  {errors.mobileNumber.length > 0 && (
+                    <Badge color="danger">{errors.mobileNumber}</Badge>
+                  )}
+                </FormGroup>
 
-              <FormGroup>
-                <Label for="mobileNumber">Mobile Number</Label>
-                <Input
-                  type="tel"
-                  name="mobileNumber"
-                  id="mobileNumber"
-                  required
-                  placeholder="Your Mobile Number"
-                  onChange={this.handleChange}
-                  value={this.state.mobileNumber}
-                />
-                {errors.mobileNumber.length > 0 && (
-                  <Badge color="danger">{errors.mobileNumber}</Badge>
-                )}
-              </FormGroup>
+                <FormGroup>
+                  <Label for="message">Message</Label>
+                  <Input
+                    type="textarea"
+                    name="message"
+                    required
+                    placeholder="Your Message"
+                    id="message"
+                    onChange={this.handleChange}
+                    value={this.state.message}
+                  />
+                  {errors.message.length > 0 && (
+                    <Badge color="danger">{errors.message}</Badge>
+                  )}
+                </FormGroup>
 
-              <FormGroup>
-                <Label for="message">Message</Label>
-                <Input
-                  type="textarea"
-                  name="message"
-                  required
-                  placeholder="Your Message"
-                  id="message"
-                  onChange={this.handleChange}
-                  value={this.state.message}
-                />
-                {errors.message.length > 0 && (
-                  <Badge color="danger">{errors.message}</Badge>
-                )}
-              </FormGroup>
-
-              <Button block>Submit Now</Button>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+                <Button block>Submit Now</Button>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }

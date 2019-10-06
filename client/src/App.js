@@ -1,5 +1,6 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { GlobleStyles } from "./globle.style";
@@ -33,6 +34,9 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <div>
+      <Helmet titleTemplate="%s - Crown Clothing" defaultTitle="Crown Clothing">
+        <meta name="description" content="Crown Clothing website" />
+      </Helmet>
       <GlobleStyles />
       <Header />
       <Switch>
