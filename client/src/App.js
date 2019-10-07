@@ -6,7 +6,9 @@ import { createStructuredSelector } from "reselect";
 import { GlobleStyles } from "./globle.style";
 
 import Header from "./components/header/header.component";
+import FooterComponent from "./components/footer/footer.component";
 import Spinner from "./components/spinner/spinner.component";
+import ScrollToTop from "./components/scroll-to-top/scroll-to-top.component";
 
 import { selectCurrentUser } from "./redux/user/user.selector";
 import { checkUserSession } from "./redux/user/user.action";
@@ -34,29 +36,36 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <div>
-      <Helmet titleTemplate="%s - Crown Clothing" defaultTitle="Crown Clothing">
-        <meta name="description" content="Crown Clothing website" />
-      </Helmet>
-      <GlobleStyles />
-      <Header />
-      <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={HomePage}></Route>
-
-            <Route path="/shop" component={ShopPage}></Route>
-            <Route
-              exact
-              path="/signin"
-              render={() =>
-                currentUser ? <Redirect to="/" /> : <SigninSignupPage />
-              }
-            ></Route>
-            <Route exact path="/checkout" component={CheckoutPage}></Route>
-            <Route exact path="/contact" component={ContactusPage}></Route>
-          </Suspense>
-        </ErrorBoundary>
-      </Switch>
+      <ScrollToTop>
+        <Helmet
+          titleTemplate="%s - Crown Clothing"
+          defaultTitle="Crown Clothing"
+        >
+          <meta name="description" content="Crown Clothing website" />
+        </Helmet>
+        <GlobleStyles />
+        <Header />
+        <div className="main-container">
+          <Switch>
+            <ErrorBoundary>
+              <Suspense fallback={<Spinner />}>
+                <Route exact path="/" component={HomePage}></Route>
+                <Route path="/shop" component={ShopPage}></Route>
+                <Route
+                  exact
+                  path="/signin"
+                  render={() =>
+                    currentUser ? <Redirect to="/" /> : <SigninSignupPage />
+                  }
+                ></Route>
+                <Route exact path="/checkout" component={CheckoutPage}></Route>
+                <Route exact path="/contact" component={ContactusPage}></Route>
+              </Suspense>
+            </ErrorBoundary>
+          </Switch>
+        </div>
+        <FooterComponent />
+      </ScrollToTop>
     </div>
   );
 };

@@ -17,10 +17,7 @@ const CollectionPage = ({ collection }) => {
     <div>
       <Helmet>
         <title>{title}</title>
-        <meta
-          name="description"
-          content="`${title} Category of Crown Clothing`"
-        />
+        <meta name="description" content="{title} Category of Crown Clothing" />
       </Helmet>
       <CollectionPageContainer>
         <TitleContainer>{title}</TitleContainer>

@@ -6,11 +6,18 @@ import { cartClear } from "../../redux/cart/cart.action";
 
 import axios from "axios";
 
-const StripeCheckoutButton = ({ price, cartClear, dispatch }) => {
+const StripeCheckoutButton = ({
+  price,
+  cartClear,
+  dispatch,
+  startLoading,
+  stopLoading
+}) => {
   const priceForStripe = price * 100;
   const publishableKey = "pk_test_mvNcukUzMTLh7JbVVdmRdxbg00SOVYO8Mv";
 
   const onToken = token => {
+    startLoading();
     console.log(token);
     const live_url = "https://react-ecommerce-salman.herokuapp.com/payment";
     axios({
@@ -22,12 +29,14 @@ const StripeCheckoutButton = ({ price, cartClear, dispatch }) => {
       }
     })
       .then(response => {
-        alert("payment successful");
+        //alert("payment successful");
         cartClear();
+        stopLoading();
       })
       .catch(error => {
         // console.log(JSON.parse(error));
         console.log(error);
+        stopLoading();
         alert(
           "there is an issue with your payment. Please sure you are using proper credit card."
         );

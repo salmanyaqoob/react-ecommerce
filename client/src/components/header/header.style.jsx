@@ -1,11 +1,11 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const OptionStyle = css`
-  padding: 10px 15px;
-  cursor: pointer;
-  text-emphasis: uppercase;
-`;
+// const OptionStyle = css`
+//   padding: 10px 15px;
+//   cursor: pointer;
+//   text-emphasis: uppercase;
+// `;
 
 export const HeaderContainer = styled.div`
   height: 70px;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const MenuItemContainer = styled.div`
+export const MenuItemContainer = styled(Link)`
   height: ${({ size }) => (size ? "380px" : "240px")};
   min-width: 30%;
   overflow: hidden;

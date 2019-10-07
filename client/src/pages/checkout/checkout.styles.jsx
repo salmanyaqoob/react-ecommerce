@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const CheckoutPageContainer = styled.div`
   width: 55%;
@@ -7,12 +7,29 @@ export const CheckoutPageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
+
+  ${props =>
+    props.trans === true &&
+    css`
+      background-color: rgba(0, 0, 0, 0);
+    `}
+
   button {
     margin-left: auto;
     margin-top: 50px;
   }
   @media screen and (max-width: 800px) {
     width: 100%;
+  }
+  .checkoutSpinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 50%;
+    &.inactive {
+      display: none;
+    }
   }
 `;
 
